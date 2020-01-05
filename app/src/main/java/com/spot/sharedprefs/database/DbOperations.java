@@ -27,12 +27,14 @@ public class DbOperations {
 
     }
 
-    
+
     public String readRow(){
-       Cursor cursor = database.rawQuery("select * from entry",null);
+       Cursor cursor = database.query(FeedEntry.TABLE_NAME,null,null,null,null,null,null);
+               //database.rawQuergetColumnIndexOrThrowy("select * from entry",null);
        cursor.moveToLast();
        int titleIndex = cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_TITLE);
        int subTitleIndex = cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_SUBTITLE);
+
         String result = cursor.getString(titleIndex)+"\n"+cursor.getString(subTitleIndex);
         return result;
     }
